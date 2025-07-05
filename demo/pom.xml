@@ -38,13 +38,25 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		<!--Mybatis-->
+		<dependency>
+		  <groupId>org.mybatis.spring.boot</groupId>
+		  <artifactId>mybatis-spring-boot-starter</artifactId>
+		  <version>2.2.2</version> <!-- spring-boot 2.7.x와 호환 -->
+		</dependency>
+		
+		<!-- Mysql -->
+		<dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
 		<!-- Lombok -->
 	    <dependency>
 	        <groupId>org.projectlombok</groupId>
 	        <artifactId>lombok</artifactId>
 	        <version>1.18.30</version>
-	        <scope>provided</scope>
+	        <scope>compile</scope>
 	    </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -83,6 +95,16 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<resources>
+		    <resource>
+		      <directory>src/main/resources</directory>
+		      <includes>
+		        <include>**/*.xml</include>
+		        <include>**/*.properties</include>
+		        <include>**/*.yml</include>
+		      </includes>
+		    </resource>
+	  	</resources>
 	</build>
 
 </project>
