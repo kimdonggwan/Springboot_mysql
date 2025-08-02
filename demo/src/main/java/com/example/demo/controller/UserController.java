@@ -21,16 +21,20 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    // 특정 사용자 조회 (GET /api/users/{id})
-    @GetMapping("/{id}")
-    public User getUserById(@PathVariable int id) {
-        return userService.getUserById(id);
+    @PostMapping
+    public void addUser(@RequestBody User user) {
+        userService.addUser(user);
     }
 
-    // 특정 사용자 이름으로 조회 (GET /api/users/username/{username}) - 선택 사항
-    @GetMapping("/username/{username}")
-    public User getUserByUsername(@PathVariable String username) {
-        return userService.getUserByUsername(username);
+    @PutMapping("/{id}")
+    public void updateUser(@PathVariable int id, @RequestBody User user) {
+        user.setId(id);
+        userService.updateUser(user);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable int id) {
+        userService.deleteUser(id);
     }
 
     // 여기에 사용자 추가, 수정, 삭제 API도 추가할 수 있습니다.

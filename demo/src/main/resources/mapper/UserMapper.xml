@@ -20,7 +20,30 @@
 		    las_inp_usr
 		FROM users
     </select>
+    
+    <!-- 사용자 추가 -->
+	<insert id="addUser" parameterType="com.example.demo.model.User" useGeneratedKeys="true" keyProperty="id">
+	    INSERT INTO users (name, nickname)
+	    VALUES 
+	    (
+	    	#{name}
+	    	, #{nickname}
+	   	)
+	</insert>
+	
+	<!-- 사용자 수정 -->
+	<update id="updateUser" parameterType="com.example.demo.model.User">
+	   UPDATE users
+	   SET name = #{name}, nickname = #{nickname}
+	   WHERE id = #{id}
+	</update>
+	
+	<!-- 사용자 삭제 -->
+	<delete id="deleteUser" parameterType="int">
+	   DELETE FROM users WHERE id = #{id}
+	</delete>
 
+<!-- 
     <select id="findUserById" resultType="com.example.demo.model.User">
         SELECT id,
 		    name,
@@ -56,6 +79,6 @@
 		FROM users 
 		WHERE name = #{username}
     </select>
- 
+  -->
     
 </mapper>	
