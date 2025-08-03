@@ -22,11 +22,34 @@
 		FROM users
     </select>
     
+    <select id="findUserInfo" resultType="com.example.demo.model.User">
+    	SELECT id,
+        	userId,
+		    name,
+		    password,
+		    position,
+		    nickname,	
+		    phone,
+		    address,
+		    birthday,
+		    note1,
+		    note2,
+		    fir_inp_date,
+		    fir_inp_usr,
+		    las_inp_date,
+		    las_inp_usr
+		FROM users
+		WHERE userId = #{userId}
+		  LIMIT 1
+    </select>
+    
     <select id="findUser" resultType="INT">
     	SELECT count(*)
     	FROM users
     	WHERE userId = #{userId}
+    	<if test="phone != null and phone != ''">
     	  AND phone = #{phone}
+    	</if>
     </select>
     
     <!-- 사용자 추가 -->

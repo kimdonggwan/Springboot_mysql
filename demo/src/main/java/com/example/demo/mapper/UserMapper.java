@@ -9,6 +9,8 @@ public interface UserMapper {
 
     // 모든 사용자 조회
     List<User> findAllUsers();
+    // 사용자 조회
+    User findUserInfo(User user);
     
     // 사용자 추가
     void addUser(User user);

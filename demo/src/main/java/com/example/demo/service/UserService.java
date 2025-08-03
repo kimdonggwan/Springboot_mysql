@@ -2,6 +2,7 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -24,9 +25,21 @@ public class UserService {
         return userMapper.findAllUsers();
     }
     
+    public boolean signin(User user) {
+    	
+		User userInfo = userMapper.findUserInfo(user);
+		String encodePassword = ((User) userInfo).getPassword();
+		
+		if (passwordEncoder.matches(user.getPassword(), encodePassword)) {
+			return true;
+		} 
+		
+		return false;
+    }
+    
     public User signup(User user) {
     	
-    	String encodePassword = passwordEncoder.encode(user.getPassword());
+    	String encodePassword = user.getPassword();
     			
     	int cnt = userMapper.findUser(user);
     	

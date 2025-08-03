@@ -31,6 +31,17 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    @PostMapping("/signin")
+    public ApiResponse<User> signin(@RequestBody User user) {
+    	boolean result = userService.signin(user);
+    	if (result) {
+    		return new ApiResponse<>(true, user, "로그인 성공");
+    	} else {
+    		return new ApiResponse<>(false, user, "로그인 실패");
+    	}
+    	
+    }
+    
     @PostMapping
     public ApiResponse<User> signup(@RequestBody User user) {
     	User savedUser = userService.signup(user);
