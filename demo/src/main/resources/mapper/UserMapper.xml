@@ -6,6 +6,7 @@
  
     <select id="findAllUsers" resultType="com.example.demo.model.User">
         SELECT id,
+        	userId,
 		    name,
 		    position,
 		    nickname,	
@@ -21,26 +22,35 @@
 		FROM users
     </select>
     
+    <select id="findUser" resultType="INT">
+    	SELECT count(*)
+    	FROM users
+    	WHERE userId = #{userId}
+    	  AND phone = #{phone}
+    </select>
+    
     <!-- 사용자 추가 -->
 	<insert id="addUser" parameterType="com.example.demo.model.User" useGeneratedKeys="true" keyProperty="id">
-	    INSERT INTO users (name, nickname)
+	    INSERT INTO users (userId, password, name, phone)
 	    VALUES 
 	    (
-	    	#{name}
-	    	, #{nickname}
+	    	#{userId}
+	    	, #{password}
+	    	, #{name}
+	    	, #{phone}
 	   	)
 	</insert>
 	
 	<!-- 사용자 수정 -->
 	<update id="updateUser" parameterType="com.example.demo.model.User">
 	   UPDATE users
-	   SET name = #{name}, nickname = #{nickname}
-	   WHERE id = #{id}
+	   SET name = #{name}, phone = #{phone}
+	   WHERE userId = #{userId}
 	</update>
 	
 	<!-- 사용자 삭제 -->
 	<delete id="deleteUser" parameterType="int">
-	   DELETE FROM users WHERE id = #{id}
+	   DELETE FROM users WHERE userId = #{userId}
 	</delete>
 
 <!-- 

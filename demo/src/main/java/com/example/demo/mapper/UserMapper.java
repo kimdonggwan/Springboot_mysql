@@ -12,10 +12,12 @@ public interface UserMapper {
     
     // 사용자 추가
     void addUser(User user);
+    // 사용자 조회
+    int findUser(User user);
     // 사용자 수정
     void updateUser(User user);
     // 사용자 삭제
-    void deleteUser(int id);
+    void deleteUser(User user);
     
     /*
     // ID로 사용자 조회

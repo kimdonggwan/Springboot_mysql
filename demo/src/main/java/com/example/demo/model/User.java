@@ -6,9 +6,11 @@ import lombok.Data;
 @Data // @Getter, @Setter, @ToString, @EqualsAndHashCode, @RequiredArgsConstructor를 자동으로 생성
 public class User {
     private int id;
+    private String userId;
     private String name;
     private String position;
     private String nickname;
+    private String password;
     private String phone;
     private String address;
     private String birthday;
